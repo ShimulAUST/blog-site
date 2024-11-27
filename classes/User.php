@@ -12,12 +12,12 @@ public function register($fullName,$username,$email,$password){
 
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     $sql ="INSERT INTO users (full_name,username,email,password) VALUES 
-            ('{$fullName}','{$username}','{$email}','{$password}')";
+            ('{$fullName}','{$username}','{$email}','{$hashedPassword}')";
     return $this->db->query($sql);
 }
 
 public function login($email,$password){
-    $sql = "SELECT  * FROM users WHER email = '{$email}'";
+    $sql = "SELECT  * FROM users WHERE email = '{$email}'";
     $result = $this->db->query($sql);
 
     if($result->num_rows > 0){
@@ -27,7 +27,7 @@ public function login($email,$password){
             $_SESSION['username'] = $user['username'];
             $_SESSION['full_name'] = $user['full_name'];
             $_SESSION['role'] = $user['role'];
-            return $true;
+            return true;
         }
     }
     return false;
