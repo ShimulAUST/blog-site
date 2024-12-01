@@ -1,0 +1,113 @@
+.blog-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.blog-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    overflow: hidden;
+    background: #fff;
+    padding: 15px;
+}
+
+.blog-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.blog-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.blog-card .author {
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.comments {
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.comment {
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #555;
+}
+
+.comment small {
+    display: block;
+    font-size: 11px;
+    color: #888;
+}
+
+.see-more {
+    color: #007bff;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 5px;
+    text-decoration: none;
+}
+
+.see-more:hover {
+    text-decoration: underline;
+}
+
+.comment-form textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.comment-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #0056b3;
+}
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination ul {
+    list-style: none;
+    display: inline-flex;
+    gap: 10px;
+}
+
+.pagination li {
+    display: inline;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.pagination a:hover,
+.pagination a[style="font-weight:bold;"] {
+    background: #007bff;
+    color: #fff;
+}
