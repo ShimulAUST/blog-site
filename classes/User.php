@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 class User{
 private $db;
@@ -8,11 +10,20 @@ public function __construct(Database $db){
     $this->db = $db;
 }
 
-public function register($fullName,$username,$email,$password){
+public function register($fullName, $username, $email, $password) {
+    // Check if email already exists
+    $emailCheckSql = "SELECT id FROM users WHERE email = '{$email}' LIMIT 1";
+    $result = $this->db->query($emailCheckSql);
 
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    $sql ="INSERT INTO users (full_name,username,email,password) VALUES 
-            ('{$fullName}','{$username}','{$email}','{$hashedPassword}')";
+    if ($result->num_rows > 0) {
+        // Email already exists
+        return false; // Or throw an exception or handle error differently
+    }
+
+    // If email does not exist, proceed with insertion
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO users (full_name, username, email, password) VALUES 
+            ('{$fullName}', '{$username}', '{$email}', '{$hashedPassword}')";
     return $this->db->query($sql);
 }
 
@@ -32,6 +43,28 @@ public function login($email,$password){
     }
     return false;
 }
+
+// Fetch user details by ID
+public function getUserById($userId) {
+    $sql = "SELECT full_name, email FROM users WHERE id = {$userId}";
+    $result = $this->db->query($sql);
+    return $result ? $result->fetch_assoc() : null;
+}
+
+// Update user profile
+public function updateUserProfile($userId, $fullName, $password = null) {
+    $fullName = $this->db->escape($fullName);
+    $updateSql = "UPDATE users SET full_name = '{$fullName}'";
+
+    if ($password) {
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $updateSql .= ", password = '{$hashedPassword}'";
+    }
+
+    $updateSql .= " WHERE id = {$userId}";
+    return $this->db->query($updateSql);
+}
+
 
 public function isLoggedIn(){
     return isset($_SESSION['user_id']);

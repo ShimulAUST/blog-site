@@ -1,4 +1,5 @@
 <?php
+include '../public/init.php';
 include '../classes/Database.php';
 include '../classes/Post.php';
 include '../classes/Comment.php';
@@ -18,15 +19,11 @@ $totalPages = ceil($totalPosts / $limit);
 include '../templates/header.php';
 ?>
 
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-?>
 
 
 <link rel="stylesheet" href="../assets/css/index.css">
 <h1 style="text-align: center;">Blog Posts</h1>
-
+<main>
 <div class="blog-container">
     <?php while ($row = $posts->fetch_assoc()): ?>
         <div class="blog-card">
@@ -66,7 +63,7 @@ ini_set('display_errors', 1);
         </div>
     <?php endwhile; ?>
 </div>
-
+            
 <!-- Pagination -->
 <nav class="pagination">
     <ul>
@@ -81,7 +78,7 @@ ini_set('display_errors', 1);
         <?php endif; ?>
     </ul>
 </nav>
-
+</main>
 <script src="../assets/js/index.js"></script>
 
 <?php include '../templates/footer.php'; ?>

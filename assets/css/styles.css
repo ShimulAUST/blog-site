@@ -7,6 +7,9 @@
 
 body {
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header Styling */
@@ -14,6 +17,12 @@ header {
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
+}
+
+main {
+    flex: 1;
+    /* Ensures the main content area grows to fill space */
+    padding: 20px;
 }
 
 nav {
@@ -67,7 +76,6 @@ footer {
     text-align: center;
     padding: 10px 20px;
     margin-top: 20px;
-    position: fixed;
     bottom: 0;
     width: 100%;
 }

@@ -85,6 +85,7 @@
 .pagination {
     text-align: center;
     margin: 20px 0;
+    /* Add margin to avoid touching footer */
 }
 
 .pagination ul {

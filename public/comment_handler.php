@@ -1,10 +1,7 @@
 <?php
-// Enable error reporting for debugging
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-session_start();
 
 // Include necessary class files
+include '../public/init.php';
 include '../classes/Database.php';
 include '../classes/Comment.php';
 
