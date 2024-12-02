@@ -19,7 +19,7 @@ public function register($fullName, $username, $email, $password) {
     }
 
     // If email does not exist, proceed with insertion
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
     $sql = "INSERT INTO users (full_name, username, email, password) VALUES 
             ('{$fullName}', '{$username}', '{$email}', '{$hashedPassword}')";
     return $this->db->query($sql);
