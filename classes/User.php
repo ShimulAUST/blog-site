@@ -15,7 +15,7 @@ public function register($fullName, $username, $email, $password) {
 
     if ($result->num_rows > 0) {
         // Email already exists
-        return false; // Or throw an exception or handle error differently
+        return false;
     }
 
     // If email does not exist, proceed with insertion
